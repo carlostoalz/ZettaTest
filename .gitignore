@@ -1,0 +1,13 @@
+Backend/.vs
+Backend/Zetta.API/.vs
+Backend/Zetta.API/bin
+Backend/Zetta.API/obj
+Backend/Zetta.BE/.vs
+Backend/Zetta.BE/bin
+Backend/Zetta.BE/obj
+Backend/Zetta.Domain/.vs
+Backend/Zetta.Domain/bin
+Backend/Zetta.Domain/obj
+Backend/Zetta.Infraestructure/.vs
+Backend/Zetta.Infraestructure/bin
+Backend/Zetta.Infraestructure/obj

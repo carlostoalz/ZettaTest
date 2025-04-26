@@ -30,6 +30,8 @@ BEGIN
 		,[Value] INT NOT NULL
 		,[CreatedBy] INT NOT NULL FOREIGN KEY REFERENCES [dbo].[Users]([Id])
 		,[CreatedAt] DATETIME NOT NULL
+		,[UpdatedBy] INT FOREIGN KEY REFERENCES [dbo].[Users]([Id])
+		,[UpdatedAt] DATETIME
 	)
 END
 GO

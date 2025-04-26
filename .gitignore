@@ -11,3 +11,40 @@ Backend/Zetta.Domain/obj
 Backend/Zetta.Infraestructure/.vs
 Backend/Zetta.Infraestructure/bin
 Backend/Zetta.Infraestructure/obj
+# Compiled output
+Frontend/dist
+Frontend/tmp
+Frontend/out-tsc
+Frontend/bazel-out
+
+# Node
+Frontend/node_modules
+Frontend/npm-debug.log
+Frontend/yarn-error.log
+
+# IDEs and editors
+Frontend/.idea
+Frontend/.project
+Frontend/.classpath
+Frontend/.c9
+Frontend/*.launch
+Frontend/.settings
+Frontend/*.sublime-workspace
+
+# Visual Studio Code
+Frontend/.vscode
+Frontend/.qodo
+Frontend/.history
+
+# Miscellaneous
+Frontend/.angular/cache
+Frontend/.sass-cache
+Frontend/connect.lock
+Frontend/coverage
+Frontend/libpeerconnection.log
+Frontend/testem.log
+Frontend/typings
+
+# System files
+Frontend/.DS_Store
+Frontend/Thumbs.db

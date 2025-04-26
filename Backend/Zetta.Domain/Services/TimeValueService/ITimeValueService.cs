@@ -7,5 +7,5 @@ public interface ITimeValueService
     Task<IEnumerable<TimeValue>> GetTimeValuesAsync();
     Task<TimeValue> AddTimeValueAsync(TimeValue timeValue);
     Task<TimeValue> UpdateTimeValueAsync(TimeValue timeValue);
-    Task DeleteTimeValueAsync(TimeValue timeValue);
+    Task<TimeValue> DeleteTimeValueAsync(long id);
 }

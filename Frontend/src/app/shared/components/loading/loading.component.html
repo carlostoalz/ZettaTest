@@ -1,0 +1,17 @@
+<div
+  class="modal fade"
+  tabindex="-1"
+  [ngStyle]="{ display: loading ? 'block' : 'none' }"
+  [ngClass]="loading ? 'modal-backdrop' : null"
+  [ngClass]="loading ? 'd-block show' : null"
+  style="background-color: rgba(0, 0, 0, 0.5)"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div
+      class="modal-content text-center spinner-border text-primary"
+      role="status"
+    >
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+</div>

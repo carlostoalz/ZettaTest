@@ -1,0 +1,27 @@
+<nav class="navbar bg-dark border-bottom border-body" data-bs-theme="dark">
+  <div class="container">
+    <a class="d-flex justify-content-start">
+      <img src="assets/img/ZettaLogo.png" alt="ZettaLogo" />
+    </a>
+    <div class="d-flex justify-content-end">
+      <img src="assets/img/SequentTalLogo.png" alt="ZettaLogo" />
+      <div class="nav-item dropdown ps-5">
+        <a
+          class="nav-link dropdown-toggle text-light"
+          role="button"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
+          {{ tokenService.GetEmail() }}
+        </a>
+        <ul class="dropdown-menu">
+          <li class="text-center">
+            <button type="button" class="btn btn-danger ali" (click)="LogOut()">
+              Log out
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>

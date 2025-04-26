@@ -45,6 +45,9 @@ class Result<T> : IResult
             case "PUT":
                 httpContext.Response.StatusCode = (int)HttpStatusCode.Accepted;
                 break;
+            case "DELETE":
+                httpContext.Response.StatusCode = (int)HttpStatusCode.NoContent;
+                break;
             default:
                 break;
         }

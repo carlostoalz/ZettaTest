@@ -12,6 +12,6 @@ internal static class TimeValueEndpoint
         group.MapGet("/", [Authorize] async (ITimeValueService service) => Results.Extensions.ResultResponse(await service.GetTimeValuesAsync()));
         group.MapPost("/", [Authorize] async (ITimeValueService service, [FromBody] TimeValue timeValue) => Results.Extensions.ResultResponse(await service.AddTimeValueAsync(timeValue)));
         group.MapPut("/", [Authorize] async (ITimeValueService service, [FromBody] TimeValue timeValue) => Results.Extensions.ResultResponse(await service.UpdateTimeValueAsync(timeValue)));
-        group.MapDelete("/", [Authorize] async (ITimeValueService service, [FromBody] TimeValue timeValue) => await service.DeleteTimeValueAsync(timeValue));
+        group.MapDelete("/{id}", [Authorize] async (ITimeValueService service, [FromRoute] long id) => Results.Extensions.ResultResponse(await service.DeleteTimeValueAsync(id)));
     }
 }

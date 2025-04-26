@@ -32,13 +32,8 @@
       <th scope="col"></th>
     </tr>
   </ng-template>
-  <ng-template
-    pTemplate="body"
-    let-timeValue
-    let-editing="editing"
-    let-ri="rowIndex"
-  >
-    <tr [pEditableRow]="timeValue">
+  <ng-template pTemplate="body" let-timeValue>
+    <tr>
       <td scope="row">{{ timeValue.Id }}</td>
       <td>{{ timeValue.Date | date : "dd/MM/yyyy" }}</td>
       <td>{{ timeValue.Value }}</td>

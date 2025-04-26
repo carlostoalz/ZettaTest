@@ -16,19 +16,8 @@ import { TimeValueService } from '../services/time-value.service';
 export class TimeValueComponent implements OnInit {
   private service = inject(TimeValueService);
   private dialog = inject(MatDialog);
-  timeValues: TimeValue[] = [];
   ngOnInit(): void {
     this.service.GetTimeValues();
-    this.service.getTimeValues().subscribe((tvs) => (this.timeValues = tvs));
-    this.service.getTimeValue().subscribe((timeValue) => {
-      if (timeValue) {
-        this.timeValues = [...this.timeValues];
-        const index = this.timeValues.findIndex((tv) => tv.Id === timeValue.Id);
-        index >= 0
-          ? (this.timeValues[index] = timeValue)
-          : this.timeValues.push(timeValue);
-      }
-    });
   }
   launchForm(): void {
     const dialogRef = this.dialog.open(FormComponent, {
@@ -38,5 +27,11 @@ export class TimeValueComponent implements OnInit {
     dialogRef.componentInstance.createTimeValue.subscribe((timeValue) => {
       if (timeValue) this.service.CreateTimeValue(timeValue);
     });
+  }
+  updateTimeValue(timevalue: TimeValue): void {
+    this.service.UpdateTimeValue(timevalue);
+  }
+  deleteTimeValue(id: number): void {
+    this.service.DeleteTimeValue(id);
   }
 }

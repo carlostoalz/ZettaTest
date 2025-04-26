@@ -1,1 +1,5 @@
-<app-list [timeValues]="timeValues" (launchFormEvent)="launchForm()"></app-list>
+<app-list
+  (launchFormEvent)="launchForm()"
+  (updateEvent)="updateTimeValue($event)"
+  (deleteEvent)="deleteTimeValue($event)"
+></app-list>

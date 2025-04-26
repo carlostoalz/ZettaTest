@@ -26,7 +26,7 @@ public class GenericRepository<T> : IGenericRepository<T> where T : class
         await _dbContext.SaveChangesAsync();
         return entity;
     }
-    public async Task<T> DeleteAsync(long id)
+    public async Task<T> DeleteAsync(int id)
     {
         if (await _DbSet.FindAsync(id) is T entity)
         {

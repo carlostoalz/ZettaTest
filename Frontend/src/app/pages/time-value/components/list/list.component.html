@@ -6,6 +6,8 @@
   [paginator]="true"
   [filterDelay]="0"
   [globalFilterFields]="['Date', 'Value']"
+  editMode="row"
+  dataKey="Id"
 >
   <ng-template pTemplate="caption">
     <div class="table-header">
@@ -32,12 +34,112 @@
       <th scope="col"></th>
     </tr>
   </ng-template>
-  <ng-template pTemplate="body" let-timeValue>
-    <tr>
+  <ng-template
+    pTemplate="body"
+    let-timeValue
+    let-editing="editing"
+    let-ri="rowIndex"
+  >
+    <tr [formGroup]="getFormGroup(ri)" [pEditableRow]="timeValue">
       <td scope="row">{{ timeValue.Id }}</td>
-      <td>{{ timeValue.Date | date : "dd/MM/yyyy" }}</td>
-      <td>{{ timeValue.Value }}</td>
-      <td>Actions</td>
+      <td>
+        <p-cellEditor>
+          <ng-template pTemplate="input">
+            <p-calendar
+              styleClass="form-control"
+              inputStyleClass="form-control"
+              appendTo="body"
+              [ngClass]="
+                getFormGroup(ri).controls['Date'].invalid &&
+                getFormGroup(ri).controls['Date'].touched
+                  ? 'is-invalid'
+                  : ''
+              "
+              formControlName="Date"
+              dateFormat="dd/mm/yy"
+            />
+            <div
+              class="invalid-feedback"
+              *ngIf="
+                getFormGroup(ri).controls['Date'].invalid &&
+                getFormGroup(ri).controls['Date'].touched
+              "
+            >
+              Please select the date.
+            </div>
+          </ng-template>
+          <ng-template pTemplate="output">
+            {{ timeValue.Date | date : "dd/MM/yyyy" }}
+          </ng-template>
+        </p-cellEditor>
+      </td>
+      <td>
+        <p-cellEditor>
+          <ng-template pTemplate="input">
+            <input
+              type="number"
+              class="form-control"
+              [ngClass]="
+                getFormGroup(ri).controls['Value'].invalid &&
+                getFormGroup(ri).controls['Value'].touched
+                  ? 'is-invalid'
+                  : ''
+              "
+              formControlName="Value"
+            />
+            <div
+              class="invalid-feedback"
+              *ngIf="
+                getFormGroup(ri).controls['Value'].invalid &&
+                getFormGroup(ri).controls['Value'].touched
+              "
+            >
+              Please insert the value.
+            </div>
+          </ng-template>
+          <ng-template pTemplate="output">
+            <td>{{ timeValue.Value }}</td>
+          </ng-template>
+        </p-cellEditor>
+      </td>
+      <td>
+        @if (!editing) {
+        <button
+          type="button"
+          class="p-button-rounded p-button-text"
+          icon="pi pi-pencil"
+          pButton
+          pRipple
+          pInitEditableRow
+        ></button>
+        <button
+          type="button"
+          class="p-button-rounded p-button-text p-button-danger"
+          icon="pi pi-trash"
+          pButton
+          pRipple
+          (click)="onDeleteRow(timeValue)"
+        ></button>
+        } @if (editing) {
+        <button
+          pButton
+          pRipple
+          type="button"
+          pSaveEditableRow
+          icon="pi pi-check"
+          class="p-button-rounded p-button-text p-button-success mr-2"
+          (click)="onRowEditSave(ri)"
+        ></button>
+        <button
+          pButton
+          pRipple
+          type="button"
+          pCancelEditableRow
+          icon="pi pi-times"
+          class="p-button-rounded p-button-text p-button-danger"
+        ></button>
+        }
+      </td>
     </tr>
   </ng-template>
   <ng-template pTemplate="emptymessage">

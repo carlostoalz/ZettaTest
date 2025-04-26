@@ -46,7 +46,7 @@ class Result<T> : IResult
                 httpContext.Response.StatusCode = (int)HttpStatusCode.Accepted;
                 break;
             case "DELETE":
-                httpContext.Response.StatusCode = (int)HttpStatusCode.NoContent;
+                httpContext.Response.StatusCode = (int)HttpStatusCode.OK;
                 break;
             default:
                 break;

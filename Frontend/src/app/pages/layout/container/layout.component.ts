@@ -1,9 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  inject,
-  OnInit,
-} from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { Router, RouterModule, RouterOutlet } from '@angular/router';
 import { ToastModule } from 'primeng/toast';
 import { LocalStorageService } from '../../../shared/services/local-storage.service';
@@ -16,7 +11,6 @@ import { NavBarComponent } from '../components/nav-bar/nav-bar.component';
   imports: [RouterOutlet, RouterModule, NavBarComponent, ToastModule],
   templateUrl: './layout.component.html',
   styleUrl: './layout.component.css',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LayoutComponent implements OnInit {
   private tokenService = inject(TokenService);

@@ -1,0 +1,53 @@
+<p-table
+  #dt
+  [value]="timeValues"
+  [rows]="10"
+  [showCurrentPageReport]="true"
+  [paginator]="true"
+  [filterDelay]="0"
+  [globalFilterFields]="['Date', 'Value']"
+>
+  <ng-template pTemplate="caption">
+    <div class="table-header">
+      <span class="p-input-icon-left pe-5">
+        <input
+          #filterInput
+          pInputText
+          type="text"
+          (input)="dt.filterGlobal($any($event.target).value, 'contains')"
+          placeholder="Search"
+          class="form-control"
+        />
+      </span>
+      <button type="button" class="btn btn-primary" (click)="launchForm()">
+        Add
+      </button>
+    </div>
+  </ng-template>
+  <ng-template pTemplate="header">
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">Date</th>
+      <th scope="col">Value</th>
+      <th scope="col"></th>
+    </tr>
+  </ng-template>
+  <ng-template
+    pTemplate="body"
+    let-timeValue
+    let-editing="editing"
+    let-ri="rowIndex"
+  >
+    <tr [pEditableRow]="timeValue">
+      <td scope="row">{{ timeValue.Id }}</td>
+      <td>{{ timeValue.Date | date : "dd/MM/yyyy" }}</td>
+      <td>{{ timeValue.Value }}</td>
+      <td>Actions</td>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="emptymessage">
+    <tr>
+      <td colspan="4" class="text-center">There is no data to show</td>
+    </tr>
+  </ng-template>
+</p-table>

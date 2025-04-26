@@ -1,0 +1,66 @@
+<form
+  class="card needs-validation"
+  (ngSubmit)="onSubmitForm($event)"
+  [formGroup]="form"
+>
+  <div class="card-header" mat-dialog-title>Create Time Value</div>
+  <div class="card-body" mat-dialog-content>
+    <div class="row pt-3">
+      <div class="col-12 form-group">
+        <label for="form-label">Date</label>
+        <p-calendar
+          styleClass="form-control"
+          inputStyleClass="form-control"
+          appendTo="body"
+          [ngClass]="
+            form.controls['Date'].invalid && form.controls['Date'].touched
+              ? 'is-invalid'
+              : ''
+          "
+          formControlName="Date"
+          dateFormat="dd/mm/yy"
+        />
+        <div
+          class="invalid-feedback"
+          *ngIf="form.controls['Date'].invalid && form.controls['Date'].touched"
+        >
+          Please select the date.
+        </div>
+      </div>
+      <div class="col-12 form-group">
+        <label for="form-label">Value</label>
+        <input
+          type="number"
+          class="form-control"
+          [ngClass]="
+            form.controls['Value'].invalid && form.controls['Value'].touched
+              ? 'is-invalid'
+              : ''
+          "
+          formControlName="Value"
+        />
+        <div
+          class="invalid-feedback"
+          *ngIf="
+            form.controls['Value'].invalid && form.controls['Value'].touched
+          "
+        >
+          Please insert the value.
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-footer d-flex justify-content-end" mat-dialog-actions>
+    <button
+      type="submit"
+      class="btn btn-success"
+      mat-dialog-close
+      [disabled]="form.invalid"
+    >
+      Save
+    </button>
+    <button type="button" class="btn btn-danger ms-3" mat-dialog-close>
+      Cancel
+    </button>
+  </div>
+</form>

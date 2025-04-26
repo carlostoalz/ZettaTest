@@ -5,6 +5,7 @@ import {
   OnInit,
 } from '@angular/core';
 import { Router, RouterModule, RouterOutlet } from '@angular/router';
+import { ToastModule } from 'primeng/toast';
 import { LocalStorageService } from '../../../shared/services/local-storage.service';
 import { TokenService } from '../../../shared/services/token.service';
 import { NavBarComponent } from '../components/nav-bar/nav-bar.component';
@@ -12,7 +13,7 @@ import { NavBarComponent } from '../components/nav-bar/nav-bar.component';
 @Component({
   selector: 'app-layout',
   standalone: true,
-  imports: [RouterOutlet, RouterModule, NavBarComponent],
+  imports: [RouterOutlet, RouterModule, NavBarComponent, ToastModule],
   templateUrl: './layout.component.html',
   styleUrl: './layout.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,

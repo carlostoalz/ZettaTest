@@ -1,6 +1,7 @@
 import { ActionReducerMap } from '@ngrx/store';
 import { LoginEffects } from './pages/login/store/login.effects';
 import * as fromLogin from './pages/login/store/login.reducer';
+import { TimeValueEffects } from './pages/time-value/store/time-value.effects';
 import * as fromTimeValue from './pages/time-value/store/time-value.reducer';
 import * as fromShared from './shared/store/shared.reducer';
 
@@ -16,4 +17,4 @@ export const appReducers: ActionReducerMap<AppState> = {
   timeValue: fromTimeValue.reducer,
 };
 
-export const appEffects = [LoginEffects];
+export const appEffects = [LoginEffects, TimeValueEffects];

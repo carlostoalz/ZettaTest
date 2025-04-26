@@ -1,5 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { MessageService } from 'primeng/api';
 import { of } from 'rxjs';
 import { catchError, exhaustMap, switchMap, tap } from 'rxjs/operators';
 import { environment } from '../../../../environments/environment';
@@ -16,6 +17,7 @@ export class TimeValueEffects {
   private actions$ = inject(Actions);
   private apiService = inject(ApiService);
   private sharedService = inject(SharedService);
+  private messageService = inject(MessageService);
 
   getTimeValues$ = createEffect(() =>
     this.actions$.pipe(
@@ -52,12 +54,19 @@ export class TimeValueEffects {
             UrlApis.timeValue
           )
           .pipe(
-            switchMap((response) => [
-              TimeValueActions.createTimeValueSuccess({
-                timeValue: response.body.Data,
-              }),
-              SharedActions.setLoading({ loading: false }),
-            ]),
+            switchMap((response) => {
+              this.messageService.add({
+                severity: 'success',
+                summary: 'Success',
+                detail: 'Time value Created',
+              });
+              return [
+                TimeValueActions.createTimeValueSuccess({
+                  timeValue: response.body.Data,
+                }),
+                SharedActions.setLoading({ loading: false }),
+              ];
+            }),
             catchError((error) => of(SharedActions.onError({ error })))
           )
       )
@@ -76,12 +85,19 @@ export class TimeValueEffects {
             UrlApis.timeValue
           )
           .pipe(
-            switchMap((response) => [
-              TimeValueActions.updateTimeValueSuccess({
-                timeValue: response.body.Data,
-              }),
-              SharedActions.setLoading({ loading: false }),
-            ]),
+            switchMap((response) => {
+              this.messageService.add({
+                severity: 'success',
+                summary: 'Success',
+                detail: 'Time value Updated',
+              });
+              return [
+                TimeValueActions.updateTimeValueSuccess({
+                  timeValue: response.body.Data,
+                }),
+                SharedActions.setLoading({ loading: false }),
+              ];
+            }),
             catchError((error) => of(SharedActions.onError({ error })))
           )
       )
@@ -100,12 +116,19 @@ export class TimeValueEffects {
             UrlApis.timeValue
           )
           .pipe(
-            switchMap((response) => [
-              TimeValueActions.deleteTimeValueSuccess({
-                deletedTimeValue: response.body.Data,
-              }),
-              SharedActions.setLoading({ loading: false }),
-            ]),
+            switchMap((response) => {
+              this.messageService.add({
+                severity: 'success',
+                summary: 'Success',
+                detail: 'Time value Deleted',
+              });
+              return [
+                TimeValueActions.deleteTimeValueSuccess({
+                  deletedTimeValue: response.body.Data,
+                }),
+                SharedActions.setLoading({ loading: false }),
+              ];
+            }),
             catchError((error) => of(SharedActions.onError({ error })))
           )
       )

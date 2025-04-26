@@ -7,17 +7,19 @@ import { LocalStorageService } from './local-storage.service';
 })
 export class TokenService {
   private ls = inject(LocalStorageService);
-
   GetId(): number {
-    return Number.parseInt(this.GetTokenClaims().Id);
+    const claims = this.GetTokenClaims();
+    return claims ? Number.parseInt(claims.Id) : null;
   }
   GetEmail(): string {
-    return this.GetTokenClaims()[
-      'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name'
-    ];
+    const claims = this.GetTokenClaims();
+    return claims
+      ? claims['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name']
+      : null;
   }
   GetExpiration(): number {
-    return this.GetTokenClaims().exp * 1000;
+    const claims = this.GetTokenClaims();
+    return claims ? claims.exp * 1000 : null;
   }
   private GetTokenClaims(): JwtPayload {
     const token = this.ls.GetToken();
